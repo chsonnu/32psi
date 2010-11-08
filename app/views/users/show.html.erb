@@ -1,26 +1,24 @@
-<table class="profile" summary="Profile information">
-  <tr>
-    <td class="main">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-      <%= render 'follow_form' if signed_in? %>
-      <% unless @user.microposts.empty? %>
-        <table class="microposts" summary="User microposts">
-          <%= render @microposts %>
-        </table>
-        <%= will_paginate @microposts %>
-      <% end %>
+<% if signed_in? %>
 
-    </td>
+<h1>Add a tire</h1>
+<%= render 'shared/tire_form' %>
 
-    <td class="sidebar round">
-      <strong>Name</strong> <%= @user.name %><br />
-      <strong>URL</strong>  <%= link_to user_path(@user), @user %><br />
-      <strong>Microposts</strong> <%= @user.microposts.count %>
-      <%= render 'shared/stats' %>
-    </td>
-  </tr>
+<% end %>
+
+<!--%= render 'follow_form' if signed_in? %-->
+      
+<table class="pretty" summary="User tires">
+  <th><%= sortable "width" %></th>
+  <th><%= sortable "sidewall" %></th>
+  <th><%= sortable "diameter" %></th>
+  <th><%= sortable "condition" %></th>
+  <th><%= sortable "quantity" %></th>
+  <th>Price</th>
+  <th>Random</th>
+
+  <% if @user.tires.empty? %>
+  <tr><td>No tires</td></tr>
+  <% else %>
+  <%= render @tires %>
+  <% end %>
 </table>
-

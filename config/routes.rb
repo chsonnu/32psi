@@ -5,13 +5,13 @@ SampleApp::Application.routes.draw do
     end
   end
 
+  resources :tires, :only => [:create, :update, :destroy]
   resources :sessions, :only => [:new, :create, :destroy]
   resources :microposts, :only => [:create, :destroy]
   resources :relationships, :only => [:create, :destroy]
 
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
-
   match '/signup', :to => 'users#new'
   match '/contact', :to => 'pages#contact'
   match '/about',   :to => 'pages#about'

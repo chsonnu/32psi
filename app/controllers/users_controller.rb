@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
   before_filter :authenticate, :except => [:show, :new, :create]
-  # before_filter :authenticate, :only => [:index, :edit, :update]
   before_filter :correct_user, :only => [:edit, :update]
   before_filter :admin_user, :only => :destroy
+
+  helper_method :sort_column, :sort_direction
 
   def following
     @title = "Following"
@@ -20,14 +21,14 @@ class UsersController < ApplicationController
 
   def index
     @title = "All users"
-    logger.debug "* #{params[:page]}"
     @users = User.paginate(:page => params[:page])
   end
 
   def show
     @user = User.find(params[:id])
-    @microposts = @user.microposts.paginate(:page => params[:page])
+    @tires = @user.tires.order(sort_column + " " + sort_direction)
     @title = @user.name
+    @tire = @user.tires.new
   end
   
   def new
@@ -70,9 +71,13 @@ class UsersController < ApplicationController
 
   private
 
-  #def authenticate
-  # deny_access unless signed_in?
-  #end
+  def sort_column
+    Tire.column_names.include?(params[:sort]) ? params[:sort] : "width"
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
 
   def correct_user
     @user = User.find(params[:id])
