@@ -12,15 +12,23 @@ module SessionsHelper
   end
   
   # method named after a fucking variable?  and the result becomes an instance var instead of local?
-  
-  
+ 
   def current_user
     @current_user ||= user_from_remember_token
-  end
-  
+  end 
   
   def signed_in?
+    # also add user == current_user check?  avoid duplication!
     !current_user.nil?
+
+    #if session[:user_id].nil?
+    #  session[:user_id] = 1
+    #end
+
+    # @user = User.find(session[:user_id])
+    #current_user?(@user)
+
+    # could put the redirect to root_path here and abstract all the model before_filter crap.
   end
   
   def sign_out
@@ -38,11 +46,12 @@ module SessionsHelper
     cookies.signed[:remember_token] || [nil, nil]
   end
   
-  def current_user?(user)
-    #logger.debug "#{user.id} VS #{current_user.id}"
-    #logger.debug @current_user == current_user
-    #logger.debug current_user == user
-    user == current_user
+  def current_user?(last_user_viewed)
+    # logger.debug "#{last_user_viewed} VS #{current_user}"
+    # logger.debug @current_user == current_user
+    # logger.debug current_user 
+    # logger.debug user
+    last_user_viewed == current_user.id
   end
 
   def authenticate

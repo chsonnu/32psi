@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_filter :correct_user, :only => [:edit, :update]
   before_filter :admin_user, :only => :destroy
 
-  helper_method :sort_column, :sort_direction
+  helper_method :sort_column, :sort_direction, :inventory_last_modified
 
   def following
     @title = "Following"
@@ -26,7 +26,13 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    session[:user_id] = @user.id
+
     @tires = @user.tires.order(sort_column + " " + sort_direction)
+
+    sql = @user.tires.order("updated_at desc").limit(1)
+    @last_modified = sql[0]["updated_at"]
+
     @title = @user.name
     @tire = @user.tires.new
   end
@@ -78,7 +84,13 @@ class UsersController < ApplicationController
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
-
+=begin
+  def inventory_last_modified
+    @user = User.find(params[:id])
+    sql = @user.tires.order("updated_at desc").limit(1)
+    @inventory_last_modified = sql[0]["updated_at"]
+  end
+=end
   def correct_user
     @user = User.find(params[:id])
     redirect_to(root_path) unless current_user?(@user)
@@ -86,6 +98,5 @@ class UsersController < ApplicationController
 
   def admin_user
     redirect_to(root_path) unless current_user.admin?
-  end
-  
+  end  
 end

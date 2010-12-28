@@ -4,15 +4,23 @@
   <td><%= tire.diameter %></td>
   <td><%= tire.condition %> %</td>
   <td>
-    <%= link_to "+", tire_path(tire, :id => tire.id, :op => 'inc'), 
-    :class => 'big_sign round', :method => :put, :remote => true %>
-    
-    <span id="tire_<%= tire.id %>"><%= tire.quantity %></span>
-    
+    <% if signed_in? %>
+
     <%= link_to "-", tire_path(tire, :id => tire.id, :op => 'dec'), 
     :class => 'big_sign round', :method => :put, :remote => true %>
+
+    <% end %>
+
+    <span id="tire_<%= tire.id %>"><%= tire.quantity %></span>
+
+    <% if signed_in? %>
+
+    <%= link_to "+", tire_path(tire, :id => tire.id, :op => 'inc'), 
+    :class => 'big_sign round', :method => :put, :remote => true %>
+
+    <% end %>
   </td>
-  <td>$</td>
+  <td>$ <%= tire.price %></td>
 
   <% unless tire.created_at.nil? %>
   <td>Updated <%= time_ago_in_words(tire.updated_at) %> ago.</td>
@@ -20,9 +28,4 @@
 
   <% user = User.find(tire.user_id) %>
   <!--%= debug "#{current_user} - #{user} - #{@user}" %-->
-  <% if current_user?(user) %>
-
-  <!--td><%= link_to "delete", tire, :method => :delete, :confirm => "You sure?", :title => tire.diameter %></td-->
-
-  <% end %>
 </tr>

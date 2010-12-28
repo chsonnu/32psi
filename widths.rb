@@ -27,3 +27,14 @@ while i < 31 do
 end
 
 puts "DIAMETERS = [#{diameters}]"
+
+i = 5
+diameters = String.new
+while i <= 100 do
+  diameters += "#{i},"
+  i += 5
+end
+
+puts "DIAMETERS = [#{diameters}]"
+
+

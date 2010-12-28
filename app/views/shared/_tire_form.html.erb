@@ -1,10 +1,12 @@
-<%= form_for @tire do |f| %>
+<%= form_for @tire, :html => { :class => "float_left" } do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
 
   <%= f.select(:width, Tire::WIDTHS) %>
   <%= f.select(:sidewall, Tire::SIDEWALLS) %>
   <%= f.select(:diameter, Tire::DIAMETERS) %>
   <%= f.select(:condition, Tire::CONDITIONS.collect {|x| [ (x == "New" ? x : x.to_s + " %"), x ]}) %>
+  <%= f.select(:price, Tire::PRICES.collect {|x| [ "$ " + x.to_s, x ]}) %>
+
   <!-- %= f.select(:quantity, 1..12, :default => 1) %-->
 
   <span class="actions">

@@ -1,19 +1,25 @@
 <% if signed_in? %>
 
-<h1>Add a tire</h1>
-<%= render 'shared/tire_form' %>
+<div class="padthisbitch round admin float_left">
+  <span class="float_left caps light_red">Add a tire: </span><%= render 'shared/tire_form' %>
+</div>
 
 <% end %>
 
 <!--%= render 'follow_form' if signed_in? %-->
-      
+     
+<div class="updated clear">
+  <span class="caps">Inventory updated:</span>
+  <span id="inventory_updated"><%= time_ago_in_words(@last_modified) %> ago</span>
+</div>
+
 <table class="pretty" summary="User tires">
   <th><%= sortable "width" %></th>
   <th><%= sortable "sidewall" %></th>
   <th><%= sortable "diameter" %></th>
   <th><%= sortable "condition" %></th>
   <th><%= sortable "quantity" %></th>
-  <th>Price</th>
+  <th><%= sortable "price" %></th>
   <th>Random</th>
 
   <% if @user.tires.empty? %>
