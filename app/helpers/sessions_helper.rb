@@ -4,22 +4,32 @@ module SessionsHelper
     current_user = user
   end
   
-  # no idea why this is fucking here
-  
   def current_user=(user)
     logger.debug "***** WHY?: #{@current_user}"
     @current_user = user
   end
   
-  # method named after a fucking variable?  and the result becomes an instance var instead of local?
- 
   def current_user
     @current_user ||= user_from_remember_token
   end 
   
   def signed_in?
+    # make this method do an authorized check as well. there is no need for a signed_in method without authorization!
+
+    #logger.debug current_user.email
+    #logger.debug session[:user_id]
+
+    #logger.debug current_user.id
+    #logger.debug params[:id]
+
+    if !current_user.nil?
+      if current_user.id.to_i == params[:id].to_i
+        return true
+      end
+    end
+    #!current_user.nil?
+
     # also add user == current_user check?  avoid duplication!
-    !current_user.nil?
 
     #if session[:user_id].nil?
     #  session[:user_id] = 1

@@ -10,7 +10,7 @@ module ApplicationHelper
 
   def logo
     # image_tag("logo.png", :alt => "Sample App", :class => "round")
-    link_to "32 psi", @user, :class => "logo"
+    link_to "32 psi", root_path, :class => "logo"
   end
 
   def sortable(column, title=nil)

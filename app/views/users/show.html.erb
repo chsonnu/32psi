@@ -7,11 +7,13 @@
 <% end %>
 
 <!--%= render 'follow_form' if signed_in? %-->
-     
+
+<% unless @last_modified.nil? %>
 <div class="updated clear">
   <span class="caps">Inventory updated:</span>
   <span id="inventory_updated"><%= time_ago_in_words(@last_modified) %> ago</span>
 </div>
+<% end %>
 
 <table class="pretty" summary="User tires">
   <th><%= sortable "width" %></th>
@@ -23,7 +25,7 @@
   <th>Random</th>
 
   <% if @user.tires.empty? %>
-  <tr><td>No tires</td></tr>
+  <!-- tr><td>No tires</td></tr -->
   <% else %>
   <%= render @tires %>
   <% end %>

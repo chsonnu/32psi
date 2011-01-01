@@ -1,4 +1,4 @@
-.container {
+container {
     background-image:url('/images/old_tires.jpg')
 }
 
@@ -21,7 +21,8 @@ section {
     margin-top: 1em;
     font-size: 120%;
     padding: 20px;
-    background: #F2F2F2;
+    // background: #F2F2F2;
+    background: black;
 }
 
 section h1 {
@@ -47,10 +48,6 @@ a:visited {
 /* Navigation */
 
 nav {
-    float: right;
-}
-
-nav {
     background-color: #C52F24;
     padding: 0 0.7em;
     white-space: nowrap;
@@ -58,7 +55,10 @@ nav {
 
 nav ul {
     margin: 0;
+// margin-left: auto;
+// margin-right: auto;
     padding: 0;
+    text-align: center;
 }
 
 nav ul li {

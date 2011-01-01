@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   helper_method :sort_column, :sort_direction, :inventory_last_modified
 
+=begin
   def following
     @title = "Following"
     @user = User.find(params[:id])
@@ -18,6 +19,7 @@ class UsersController < ApplicationController
     @users = @user.followers.paginate(:page => params[:page])
     render 'show_follow'
   end
+=end
 
   def index
     @title = "All users"
@@ -30,8 +32,12 @@ class UsersController < ApplicationController
 
     @tires = @user.tires.order(sort_column + " " + sort_direction)
 
-    sql = @user.tires.order("updated_at desc").limit(1)
-    @last_modified = sql[0]["updated_at"]
+    logger.debug "@tires: #{@tires.count}"
+
+    if @tires.count != 0
+      sql = @user.tires.order("updated_at desc").limit(1)
+      @last_modified = sql[0]["updated_at"]
+    end
 
     @title = @user.name
     @tire = @user.tires.new
