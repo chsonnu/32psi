@@ -5,16 +5,16 @@ class TiresController < ApplicationController
   def create
     @tire = current_user.tires.build(params[:tire])
 
-    tire_count = Tire.count(:conditions => "width = #{@tire.width} AND sidewall = #{@tire.sidewall} AND #{@tire.diameter} AND condition = #{@tire.condition}")
+    tire_count = Tire.count(:conditions => "width = #{@tire.width} AND sidewall = #{@tire.sidewall} AND diameter = #{@tire.diameter} AND condition = #{@tire.condition} AND user_id = #{current_user.id}")
 
     if tire_count == 0
       @tire.save
-      flash[:success] = "Tire added!"
+      flash[:success] = "The tire has been added."
       redirect_to current_user
     else
       @user = current_user
       @tires = current_user.tires
-      flash[:alert] = "A record for #{@tire.width} / #{@tire.sidewall} / #{@tire.diameter} at #{@tire.condition}% already exists.  Try incrementing the quantity of the existing record instead."
+      flash[:alert] = "The tire record for #{@tire.width} / #{@tire.sidewall} / #{@tire.diameter} at #{@tire.condition}% already exists.  Try incrementing the quantity of the existing tire record instead."
 
       redirect_to current_user
       # render 'users/show'

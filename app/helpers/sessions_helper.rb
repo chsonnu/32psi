@@ -4,11 +4,13 @@ module SessionsHelper
     current_user = user
   end
   
+  # setter 
   def current_user=(user)
     logger.debug "***** WHY?: #{@current_user}"
     @current_user = user
   end
   
+  # getter
   def current_user
     @current_user ||= user_from_remember_token
   end 

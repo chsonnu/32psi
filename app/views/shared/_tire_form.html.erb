@@ -1,4 +1,4 @@
-<%= form_for @tire, :html => { :class => "float_left" } do |f| %>
+<%= form_for @tire, :html => { :class => "" } do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
 
   <%= f.select(:width, Tire::WIDTHS) %>

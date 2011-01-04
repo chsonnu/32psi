@@ -3,13 +3,13 @@ container {
 }
 
 body {
-    background: #F2F2F2;
+    background: lightgrey;
 }
 
 header {
     //margin-top: 20px;
     padding-top: 20px;
-    background: lightgrey;
+    background: darkgrey;
 }
 
 header img {
@@ -22,7 +22,7 @@ section {
     font-size: 120%;
     padding: 20px;
     // background: #F2F2F2;
-    background: black;
+    background: white;
 }
 
 section h1 {
@@ -120,6 +120,12 @@ a.signup_button {
     -moz-border-radius:    10px;
     -webkit-border-radius: 10px;
     border-radius:         10px;
+}
+
+.bottom_round {
+    -moz-border-radius:    0 0 10px 10px;
+    -webkit-border-radius: 0 0 10px 10px;
+    border-radius:         0 0 10px 10px;
 }
 
 footer {
@@ -315,10 +321,16 @@ form.new_micropost textarea {
     text-align:center;
 }
 
+.margin_auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .admin {
     background-color: #C52F24;
 }
 
-.padthisbitch {
+.small_box {
+    width: 50%;
     padding: 0 0.7em;
 }

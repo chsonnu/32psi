@@ -1,19 +1,22 @@
-<% if signed_in? %>
 
-<div class="padthisbitch round admin float_left">
-  <span class="float_left caps light_red">Add a tire: </span><%= render 'shared/tire_form' %>
-</div>
+  
+  <% if signed_in? %>
+  <div class="round admin small_box center margin_auto">
+    <span class="caps light_red">Add a tire</span>
+    <%= render 'shared/tire_form' %>
+  </div>
+  <% end %>
 
-<% end %>
+  <!--%= render 'follow_form' if signed_in? %-->
 
-<!--%= render 'follow_form' if signed_in? %-->
+  <% unless @last_modified.nil? %>
+  <div class="updated">
+    <span class="caps">Inventory updated:</span>
+    <span id="inventory_updated"><%= time_ago_in_words(@last_modified) %> ago</span>
+  </div>
+  <% end %>
 
-<% unless @last_modified.nil? %>
-<div class="updated clear">
-  <span class="caps">Inventory updated:</span>
-  <span id="inventory_updated"><%= time_ago_in_words(@last_modified) %> ago</span>
-</div>
-<% end %>
+
 
 <table class="pretty" summary="User tires">
   <th><%= sortable "width" %></th>
