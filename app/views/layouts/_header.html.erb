@@ -1,21 +1,29 @@
-<header class="bottom_round">
-  <%= link_to logo, root_path %>
+<header class="span-23 round">
+<div class="span-6"><%= logo %></div>
+<div class="prepend-10 span-7 last">
 
   <% if signed_in? %>
-  <nav class="bottom_round">
-    <div class="caps light_red center">ADMIN MODE</div>
+
+  <nav>
+
+    <!-- h2 class="light_red">ADMIN MODE</h2 -->
 
     <ul>
-      <!--li><span class="caps light_red">ADMIN MODE</span></li-->
       <li><%= link_to "Home", root_path %></li>
       <!-- li><%= link_to "Users", users_path %></li -->
       <li><%= link_to "Profile", current_user %></li>
       <li><%= link_to "Settings", edit_user_path(current_user) %></li>
       <li><%= link_to "Help", help_path %></li>
       <li><%= link_to "Sign out", signout_path, :method => :delete %></li>
+      
       <% else %>
+
       <li><%= link_to "Sign in", signin_path %></li>
+
       <% end %>
+
     </ul>
   </nav>
+</div>
+
 </header>

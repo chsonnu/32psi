@@ -8,8 +8,9 @@ body {
 
 header {
     //margin-top: 20px;
-    padding-top: 20px;
+    //padding-top: 20px;
     background: darkgrey;
+    padding: 20px;
 }
 
 header img {
@@ -48,17 +49,17 @@ a:visited {
 /* Navigation */
 
 nav {
-    background-color: #C52F24;
-    padding: 0 0.7em;
-    white-space: nowrap;
+    // background-color: #C52F24;
+    // padding: 0 0.7em;
+    // white-space: nowrap;
 }
 
 nav ul {
     margin: 0;
-// margin-left: auto;
-// margin-right: auto;
+    // margin-left: auto;
+    // margin-right: auto;
     padding: 0;
-    text-align: center;
+    // text-align: center;
 }
 
 nav ul li {
@@ -272,6 +273,10 @@ form.new_micropost textarea {
     margin-bottom: 0;
 }
 
+.pretty {
+    border:5px solid black;
+}
+
 .pretty th .current {
     padding-right: 12px;
     background-repeat: no-repeat;
@@ -328,9 +333,27 @@ form.new_micropost textarea {
 
 .admin {
     background-color: #C52F24;
+    padding: 0 20px;
 }
 
 .small_box {
     width: 50%;
     padding: 0 0.7em;
+}
+
+.inventory_last_updated {
+    padding: 1em 0;
+}
+
+.zero_margin_bottom {
+    margin-bottom: 0;
+}
+
+tr.diameter {
+    background: darkblue;
+    color: white;
+}
+
+tr.columns {
+    background: lightblue;
 }

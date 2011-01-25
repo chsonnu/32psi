@@ -31,8 +31,22 @@ class UsersController < ApplicationController
     session[:user_id] = @user.id
 
     @tires = @user.tires.order(sort_column + " " + sort_direction)
+    
+=begin
 
-    logger.debug "@tires: #{@tires.count}"
+    @diameters = Array.new
+    @tires.each { |i| @diameters << i.diameter }
+    @diameters.uniq!
+    logger.debug @diameters
+
+    @organized_tires = Array.new
+    @diameters.each { |i| 
+      
+    }
+=end
+    
+    #logger.debug "@tires: #{@tires.count}"
+    #logger.debug "@tires.class: #{@tires.class}"
 
     if @tires.count != 0
       sql = @user.tires.order("updated_at desc").limit(1)
@@ -84,7 +98,7 @@ class UsersController < ApplicationController
   private
 
   def sort_column
-    Tire.column_names.include?(params[:sort]) ? params[:sort] : "width"
+    Tire.column_names.include?(params[:sort]) ? params[:sort] : "diameter"
   end
   
   def sort_direction
