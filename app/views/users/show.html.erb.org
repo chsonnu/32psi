@@ -1,0 +1,38 @@
+<% if signed_in? %>
+
+<!--div class="round admin small_box center margin_auto">
+    <span class="caps light_red">Add a tire</span>
+    <!--%= render 'shared/tire_form' %-->
+    </div -->
+
+    <div class="span-14 admin round">
+      <div class="span-4"><h2 class="light_red zero_margin_bottom">Add a tire</h2></div>
+      <div class="span-10 last"><%= render 'shared/tire_form' %></div>
+    </div>
+    
+<% end %>
+
+  <!--%= render 'follow_form' if signed_in? %-->
+
+  <% unless @last_modified.nil? %>
+
+  <!--div class="span-5">Inventory updated</div>
+  <div class="span-18 last"><%= time_ago_in_words(@last_modified) %> ago</div-->
+
+  <div class="span-23 inventory_last_updated">Inventory last updated <%= time_ago_in_words(@last_modified) %> ago</div>
+
+  <% end %>
+
+<table class="pretty" summary="User tires">
+  <th><%= sortable "width" %></th>
+  <th><%= sortable "sidewall" %></th>
+  <th><%= sortable "diameter" %></th>
+  <th><%= sortable "condition" %></th>
+  <th><%= sortable "quantity" %></th>
+  <th><%= sortable "price" %></th>
+  <th>Notes</th>
+
+  <% unless @user.tires.empty? %>
+  <%= render @tires %>
+  <% end %>
+</table>
