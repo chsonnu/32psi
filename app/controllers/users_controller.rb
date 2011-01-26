@@ -5,22 +5,6 @@ class UsersController < ApplicationController
 
   helper_method :sort_column, :sort_direction, :inventory_last_modified
 
-=begin
-  def following
-    @title = "Following"
-    @user = User.find(params[:id])
-    @users = @user.following.paginate(:page => params[:page])
-    render 'show_follow'
-  end
-
-  def followers
-    @title = "Followers"
-    @user = User.find(params[:id])
-    @users = @user.followers.paginate(:page => params[:page])
-    render 'show_follow'
-  end
-=end
-
   def index
     @title = "All users"
     @users = User.paginate(:page => params[:page])
@@ -32,22 +16,6 @@ class UsersController < ApplicationController
 
     @tires = @user.tires.order(sort_column + " " + sort_direction)
     
-=begin
-
-    @diameters = Array.new
-    @tires.each { |i| @diameters << i.diameter }
-    @diameters.uniq!
-    logger.debug @diameters
-
-    @organized_tires = Array.new
-    @diameters.each { |i| 
-      
-    }
-=end
-    
-    #logger.debug "@tires: #{@tires.count}"
-    #logger.debug "@tires.class: #{@tires.class}"
-
     if @tires.count != 0
       sql = @user.tires.order("updated_at desc").limit(1)
       @last_modified = sql[0]["updated_at"]
@@ -104,13 +72,7 @@ class UsersController < ApplicationController
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
-=begin
-  def inventory_last_modified
-    @user = User.find(params[:id])
-    sql = @user.tires.order("updated_at desc").limit(1)
-    @inventory_last_modified = sql[0]["updated_at"]
-  end
-=end
+
   def correct_user
     @user = User.find(params[:id])
     redirect_to(root_path) unless current_user?(@user)
