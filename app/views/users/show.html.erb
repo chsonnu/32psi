@@ -9,7 +9,7 @@
 
 <% unless @last_modified.nil? %>
 
-<div class="span-23 inventory_last_updated">Inventory was last updated <%= time_ago_in_words(@last_modified) %> ago</div>
+<div class="span-23 last">Inventory was last updated <span id="inventory_last_updated"><%= time_ago_in_words(@last_modified) %></span> ago</div>
 
 <% end %>
 
