@@ -19,25 +19,19 @@
 
 	<% @tires.each do |t| %>
 		<% if previous_diameter != t.diameter %>
-
-
 			<% if iteration != 0 %>
 				</table>
 			<% end %>
 
-			<div class="span-2 top_round tab">
-			  <%= t.diameter %> "
-			</div>
-
 			<table class="pretty" summary="User tires">
-			  <!--tr class="diameter"><th colspan="6"><%= t.diameter %>"</th></tr-->
+			  <tr class="diameter"><th colspan="6"><%= t.diameter %>"</th></tr>
 			  <thead>
 			  <tr class="columns">
-			    <th><a href="#">Width</a></th>
-			    <th><a href="#">Sidewall</a></th>
-			    <th><a href="#">Condition</a></th>
-			    <th><a href="#">Quantity</a></th>
-			    <th><a href="#">Price</a></th>
+			    <th><%= sortable "width" %></th>
+			    <th><%= sortable "sidewall" %></th>
+			    <th><%= sortable "condition" %></th>
+			    <th><%= sortable "quantity" %></th>
+			    <th><%= sortable "price" %></th>
 			    <th>Notes</th>		  
 			  </tr>
 			  </thead>
@@ -45,7 +39,6 @@
 
 		<%= render t %>
 		<% previous_diameter = t.diameter %>
-		<% iteration += 1 %>
 	<% end %>
 
 	</table>

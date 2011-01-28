@@ -47,19 +47,10 @@ class TiresController < ApplicationController
   private
 
   def authorized_user
-    # what you could do is pass the user id along with the tire id and inc/dec in the update link.
-    # that would solve your fucking problem and you wouldn't have to use sessions.
-
-    # could have an hidden value in the tire form for the user.id?  
-    # ultimately used a session in UserController#show.
-    # session[:user_id] = 2
-
-    # @user = User.find(params[:id])
-
     logger.debug "dear god: #{session[:user_id]}"
-    # logger.debug "dear god: #{@user.id}"
+    # logger.debug "dear god 2: #{@user.id}"
 
     # @user = current_user
-    redirect_to root_path unless current_user?(session[:user_id])
+    redirect_to current_user unless current_user?(session[:user_id])
   end
 end

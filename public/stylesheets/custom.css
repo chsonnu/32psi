@@ -33,17 +33,17 @@ section h1 {
 /* Links */
 
 a {
-    color: #09c;
+    color: #ffffff;
     text-decoration: none;
 }
 
 a:hover {
-    color: #069;
+    color: #ffffff;
     text-decoration: underline;
 }
 
 a:visited {
-    color: #069;
+    color: #ffffff;
 }
 
 /* Navigation */
@@ -105,7 +105,6 @@ a.signup_button {
     // text-align: center;
     // width: 100px;
 
-
     color: white;
     background: #C52F24;
     // background: lightgray;
@@ -113,6 +112,11 @@ a.signup_button {
     font-weight: bold;
     padding: 2px 10px;
     text-align: center;
+}
+
+a.big_sign:hover {
+    background: #621812;
+    text-decoration: none;
 }
 
 /* Round corners */
@@ -356,4 +360,54 @@ tr.diameter {
 
 tr.columns {
     background: lightblue;
+}
+
+th.header { 
+    background-image: url(../images/bg.gif);     
+    cursor: pointer; 
+    font-weight: bold; 
+    background-repeat: no-repeat; 
+    background-position: center right; 
+    //padding-left: 20px; 
+    border-right: 1px solid #dad9c7; 
+    margin-left: -1px;
+} 
+
+th.headerSortUp { 
+    background-image: url(../images/asc.gif); 
+    background-color: #3399FF; 
+} 
+
+th.headerSortDown { 
+    background-image: url(../images/desc.gif); 
+    background-color: #3399FF; 
+} 
+
+th a:hover {
+    color: black;
+    text-decoration: underline;
+}
+
+th a {
+    color: black;
+}
+
+th a:visited {
+    color: black;
+}
+
+.top_round {
+    -moz-border-radius:    10px 10px 0 0;
+    -webkit-border-radius: 10px 10px 0 0;
+    border-radius:         10px 10px 0 0;
+}
+
+.tab {
+    //background: LightGoldenRodYellow;
+    background: #626C80;
+    //color: #E0E2E6;
+    color: #ffffff;
+    border: 1px solid black;
+    text-align: center;
+    font-weight: bold;
 }

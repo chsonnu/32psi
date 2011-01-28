@@ -6,7 +6,7 @@
   <td>
     <% if signed_in? %>
 
-    <%= link_to "-", tire_path(tire, :id => tire.id, :op => 'dec'), 
+    <%= link_to "-", tire_path(tire, :op => 'dec'), 
     :class => 'big_sign round', :method => :put, :remote => true %>
 
     <% end %>
@@ -15,7 +15,7 @@
 
     <% if signed_in? %>
 
-    <%= link_to "+", tire_path(tire, :id => tire.id, :op => 'inc'), 
+    <%= link_to "+", tire_path(tire, :op => 'inc'), 
     :class => 'big_sign round', :method => :put, :remote => true %>
 
     <% end %>
