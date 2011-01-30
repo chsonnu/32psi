@@ -2,7 +2,7 @@
 <div class="span-6"><%= logo %></div>
 <div class="prepend-10 span-7 last">
 
-  <% if signed_in? %>
+  <% if current_user?(@user) %>
 
   <nav>
 

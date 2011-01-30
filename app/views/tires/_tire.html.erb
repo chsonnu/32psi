@@ -1,19 +1,21 @@
+<% user = User.find(tire.user) %>
+
 <tr>  
   <td><%= tire.width %></td>
   <td><%= tire.sidewall %></td>
   <!-- td><%= tire.diameter %></td -->
   <td><%= tire.condition %> %</td>
   <td>
-    <% if signed_in? %>
+    <% if current_user?(user) %>
 
     <%= link_to "-", tire_path(tire, :op => 'dec'), 
     :class => 'big_sign round', :method => :put, :remote => true %>
 
     <% end %>
 
-    <span id="tire_<%= tire.id %>"><%= tire.quantity %></span>
+    <span id="tire_<%= tire.id %>"><%= sprintf("%.2d", tire.quantity) %></span>
 
-    <% if signed_in? %>
+    <% if current_user?(user) %>
 
     <%= link_to "+", tire_path(tire, :op => 'inc'), 
     :class => 'big_sign round', :method => :put, :remote => true %>
@@ -23,9 +25,11 @@
   <td>$ <%= tire.price %></td>
 
   <% unless tire.created_at.nil? %>
-  <td>Updated <%= time_ago_in_words(tire.updated_at) %> ago.</td>
+     <td>Updated <%= time_ago_in_words(tire.updated_at) %> ago.</td>
   <% end %>
 
-  <% user = User.find(tire.user_id) %>
-  <!--%= debug "#{current_user} - #{user} - #{@user}" %-->
+  <% if current_user?(user) %>
+     <td><%= link_to "X", tire, :method => :delete, :confirm => "Are you sure?", :class => "big_sign round" %>
+  <% end %>
+
 </tr>

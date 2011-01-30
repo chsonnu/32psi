@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    session[:user_id] = @user.id
+    #session[:user_id] = @user.id
 
     @tires = @user.tires.order(sort_column + " " + sort_direction)
     

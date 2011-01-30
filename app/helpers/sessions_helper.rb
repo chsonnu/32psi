@@ -2,6 +2,8 @@ module SessionsHelper
   def sign_in(user)
     cookies.permanent.signed[:remember_token] = [user.id, user.salt]
     current_user = user
+
+    # might want to store the id in a session as well.  this will allow signed_in? to test authorization.
   end
   
   # setter 
@@ -24,11 +26,8 @@ module SessionsHelper
     #logger.debug current_user.id
     #logger.debug params[:id]
 
-    if !current_user.nil?
-      if current_user.id.to_i == params[:id].to_i
-        return true
-      end
-    end
+    !current_user.nil?
+    
     #!current_user.nil?
 
     # also add user == current_user check?  avoid duplication!
@@ -58,15 +57,16 @@ module SessionsHelper
     cookies.signed[:remember_token] || [nil, nil]
   end
   
-  def current_user?(last_user_viewed)
-    # logger.debug "#{last_user_viewed} VS #{current_user}"
+  def current_user?(user)
+    logger.debug "#{user} VS #{current_user}"
     # logger.debug @current_user == current_user
     # logger.debug current_user 
     # logger.debug user
-    last_user_viewed == current_user.id
+    user == current_user
   end
 
   def authenticate
+    logger.debug "sessions_helper#authenticate"
     deny_access unless signed_in?
   end
 

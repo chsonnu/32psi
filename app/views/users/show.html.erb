@@ -1,8 +1,8 @@
-<% if signed_in? %>
+<% if current_user?(@user) %>
 
-<div class="span-14 admin round">
+<div class="span-14 admin round last">
   <div class="span-4"><h2 class="light_red zero_margin_bottom">Add a tire</h2></div>
-  <div class="span-10 last"><%= render 'shared/tire_form' %></div>
+  <div class="span-10 vertical_center last"><%= render 'shared/tire_form' %></div>
 </div>
     
 <% end %>
@@ -19,7 +19,6 @@
 
 	<% @tires.each do |t| %>
 		<% if previous_diameter != t.diameter %>
-
 
 			<% if iteration != 0 %>
 				</table>
@@ -38,7 +37,8 @@
 			    <th><a href="#">Condition</a></th>
 			    <th><a href="#">Quantity</a></th>
 			    <th><a href="#">Price</a></th>
-			    <th>Notes</th>		  
+			    <th>Description</th>		  
+			    <% if current_user?(@user) %><th>Delete</th><% end %>
 			  </tr>
 			  </thead>
 		<% end %> 

@@ -324,6 +324,7 @@ form.new_micropost textarea {
 
 .light_red {
     color: #F1938C;
+    //color: #F3D5D3;
 }
 
 .center {
@@ -338,6 +339,7 @@ form.new_micropost textarea {
 .admin {
     background-color: #C52F24;
     padding: 0 20px;
+    margin-bottom: 1em;
 }
 
 .small_box {
@@ -410,4 +412,11 @@ th a:visited {
     border: 1px solid black;
     text-align: center;
     font-weight: bold;
+}
+
+// a.delete:hover, a.delete { font-weight: bold; }
+// a.delete:visited { color: white; }
+
+.vertical_center {
+    margin-top: 5px;
 }

@@ -1,15 +1,19 @@
 class TiresController < ApplicationController
-  # before_filter :authenticate, :only => [:create, :destroy, :update]
-  before_filter :authorized_user, :only => [:create, :destroy, :update]
+  before_filter :authenticate, :only => [:create, :destroy, :update]
+  # before_filter :authorized_user, :only => [:create, :destroy, :update]
+  before_filter :authorized_user, :only => [:destroy]
 
   def create
     @tire = current_user.tires.build(params[:tire])
 
-    tire_count = Tire.count(:conditions => "width = #{@tire.width} AND sidewall = #{@tire.sidewall} AND diameter = #{@tire.diameter} AND condition = #{@tire.condition} AND user_id = #{current_user.id}")
+    @tire_spec =  "#{@tire.width} / #{@tire.sidewall} / #{@tire.diameter} / #{@tire.condition} % / $ #{@tire.price}"
+
+    # tire_count = Tire.count(:conditions => "width = #{@tire.width} AND sidewall = #{@tire.sidewall} AND diameter = #{@tire.diameter} AND condition = #{@tire.condition} AND user_id = #{current_user.id}")
+    tire_count = 0
 
     if tire_count == 0
       @tire.save
-      flash[:success] = "The tire has been added."
+      flash[:success] = "Tire record #{@tire_spec} has been added."
       redirect_to current_user
     else
       @user = current_user
@@ -31,7 +35,7 @@ class TiresController < ApplicationController
       @inventory_last_modified = sql[0]["updated_at"]
 
       respond_to do |format|
-        format.html { redirect_to current_user}
+        format.html { redirect_to current_user }
         format.js
       end
     else     
@@ -40,17 +44,31 @@ class TiresController < ApplicationController
   end
   
   def destroy
+    @tire = current_user.tires.find(params[:id])
+
+    text = "#{@tire.width} / #{@tire.sidewall} / #{@tire.diameter}"
+
     @tire.destroy
-    redirect_back_or root_path
+    # User.find(params[:id]).destroy
+
+    respond_to do |format|
+      format.html { redirect_to current_user }
+      format.js
+    end
+
+    # flash[:success] = "Record \"#{text}\" was deleted."
+    # redirect_to current_user
   end
 
   private
 
   def authorized_user
-    logger.debug "dear god: #{session[:user_id]}"
-    # logger.debug "dear god 2: #{@user.id}"
+    logger.debug "tires_controller#authorized_user"
 
-    # @user = current_user
-    redirect_to current_user unless current_user?(session[:user_id])
+    @tire = Tire.find(params[:id])
+
+    logger.debug @tire.user
+
+    redirect_to root_path unless current_user?(@tire.user)
   end
 end
