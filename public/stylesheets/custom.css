@@ -278,7 +278,7 @@ form.new_micropost textarea {
 }
 
 .pretty {
-    border:1px solid black;
+    //border:1px solid black;
 }
 
 .pretty th .current {
@@ -340,6 +340,7 @@ form.new_micropost textarea {
     background-color: #C52F24;
     padding: 0 20px;
     margin-bottom: 1em;
+    border: 2px solid #621812;
 }
 
 .small_box {
@@ -355,6 +356,10 @@ form.new_micropost textarea {
     margin-bottom: 0;
 }
 
+td {
+    border: 1px solid #dad9c7;
+}
+
 tr.diameter {
     background: darkblue;
     color: white;
@@ -364,6 +369,10 @@ tr.columns {
     background: lightblue;
 }
 
+th {
+    border: 1px solid #dad9c7; 
+}
+
 th.header { 
     background-image: url(../images/bg.gif);     
     cursor: pointer; 
@@ -371,7 +380,7 @@ th.header {
     background-repeat: no-repeat; 
     background-position: center right; 
     //padding-left: 20px; 
-    border-right: 1px solid #dad9c7; 
+    //border-right: 2px solid #dad9c7; 
     margin-left: -1px;
 } 
 
@@ -419,4 +428,22 @@ th a:visited {
 
 .vertical_center {
     margin-top: 5px;
+}
+
+.forced_float_left {
+    float:left;
+}
+
+.forced_float_right {
+    float:right;
+}
+
+select, input, .forced_input {
+    background: #F1938C;
+    border: 2px solid #621812;
+}
+
+select:hover, input:hover, input:focus {
+//    background: #F1938C;
+  //  border: 5px solid #621812;
 }

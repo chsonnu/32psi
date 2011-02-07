@@ -24,8 +24,10 @@
   </td>
   <td>$ <%= tire.price %></td>
 
+
+
   <% unless tire.created_at.nil? %>
-     <td>Updated <%= time_ago_in_words(tire.updated_at) %> ago.</td>
+     <td><%= tire.description %></td>
   <% end %>
 
   <% if current_user?(user) %>

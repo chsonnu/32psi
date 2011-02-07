@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101109081717) do
+ActiveRecord::Schema.define(:version => 20110206072703) do
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
@@ -35,12 +35,13 @@ ActiveRecord::Schema.define(:version => 20101109081717) do
     t.integer  "width"
     t.integer  "sidewall"
     t.integer  "diameter"
-    t.integer  "condition",  :limit => 255
+    t.integer  "condition",   :limit => 255
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "quantity",                  :default => 1
+    t.integer  "quantity",                   :default => 1
     t.integer  "price"
+    t.string   "description"
   end
 
   add_index "tires", ["user_id"], :name => "index_tires_on_user_id"

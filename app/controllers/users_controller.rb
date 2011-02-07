@@ -12,7 +12,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    #session[:user_id] = @user.id
+    # @user = User.where("name = ?", params[:id])
+    # session[:user_id] = @user.id
+
+    # raise @user.inspect
 
     @tires = @user.tires.order(sort_column + " " + sort_direction)
     
