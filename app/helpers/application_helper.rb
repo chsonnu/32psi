@@ -11,8 +11,8 @@ module ApplicationHelper
   def logo
     # image_tag("logo.png", :alt => "Sample App", :class => "round")
     if signed_in?
-      link_to "#{@user.name} (logo)", user_path, :class => "logo"
-      else
+      link_to "#{@user.name}", root_path, :class => "logo"
+    else
       link_to "32psi (logo)", root_path, :class => "logo"
     end
   end

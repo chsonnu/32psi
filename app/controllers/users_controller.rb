@@ -11,7 +11,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by_subdomain!(request.subdomain)
+    logger.debug @user.inspect
+
+    # @user = User.find(params[:id])
     # @user = User.where("name = ?", params[:id])
     # session[:user_id] = @user.id
 
@@ -55,7 +58,7 @@ class UsersController < ApplicationController
       flash[:success] = "Profile updated."
       redirect_to @user
     else
-      @title = "Edit user"
+      @title = "Settings"
       render 'edit'
     end
   end
@@ -77,7 +80,8 @@ class UsersController < ApplicationController
   end
 
   def correct_user
-    @user = User.find(params[:id])
+    @user = User.find_by_subdomain!(request.subdomain)
+    # @user = User.find(params[:id])
     redirect_to(root_path) unless current_user?(@user)
   end
 

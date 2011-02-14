@@ -1,12 +1,12 @@
 <%= form_for @tire, :html => { :class => "vertical_center" } do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
 
-  <%= f.select(:width, Tire::WIDTHS) %>
-  <%= f.select(:sidewall, Tire::SIDEWALLS) %>
-  <%= f.select(:diameter, Tire::DIAMETERS) %>
-  <%= f.select(:condition, Tire::CONDITIONS.collect {|x| [ (x == "New" ? x : x.to_s + " %"), x ]}) %>
-  <%= f.select(:price, Tire::PRICES.collect {|x| [ "$ " + x.to_s, x ]}) %>
-  <%= f.text_field(:description) %>
+  <%= f.select(:width, Tire::WIDTHS.unshift("Width")) %>
+  <%= f.select(:sidewall, Tire::SIDEWALLS.unshift("Sidewall")) %>
+  <%= f.select(:diameter, Tire::DIAMETERS.unshift("Diameter")) %>
+  <%= f.select(:condition, Tire::CONDITIONS.collect {|x| [ (x == "New" ? x : x.to_s + " %"), x ]}.unshift("Condition")) %>
+  <%= f.select(:price, Tire::PRICES.collect {|x| [ "$ " + x.to_s, x ]}.unshift("Price")) %>
+  <%= f.text_field(:description, :value => "optional description") %>
 
   <span class="actions">
     <%= f.submit "Submit" %>

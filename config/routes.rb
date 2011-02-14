@@ -17,6 +17,16 @@ SampleApp::Application.routes.draw do
   match '/about',   :to => 'pages#about'
   match '/help',    :to => 'pages#help'
 
+  #constraints(Subdomain) do
+  #  match '/' => 'users#show'
+  #end
+
+  match '/' => 'pages#blog', :constraints => { :subdomain => /blog/ } 
+  match '/' => 'pages#home', :constraints => { :subdomain => /www/ } 
+  match '/' => 'users#show', :constraints => { :subdomain => /.+/ } 
+
+  match "/settings" => "users#edit"
+
   root :to => 'pages#home'
 
   #get "pages/home"

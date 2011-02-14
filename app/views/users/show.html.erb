@@ -1,19 +1,15 @@
 <% if current_user?(@user) %>
 
-<!-- div class="span-22 admin round last">
-  <div class="span-4"><h2 class="light_red zero_margin_bottom">Add a tire</h2></div>
-  <div class="span-18 vertical_center last"><!-- %= render 'shared/tire_form' % --></div>
-</div -->
-
-<div class="span-20 admin round last">
-  <h2 class="light_red zero_margin_bottom forced_float_left" style="padding-right:10px;">Add a tire</h2><%= render 'shared/tire_form' %>
+<div class="span-22 admin round last">
+  <h3 class="light_red zero_margin_bottom forced_float_left" style="padding-top:10px;padding-right:10px;">Add a tire</h3>
+  <%= render 'shared/tire_form' %>
 </div>
     
 <% end %>
 
 <% unless @last_modified.nil? %>
 
-<div class="span-23 last">Inventory was last updated <span id="inventory_last_updated"><%= time_ago_in_words(@last_modified) %></span> ago</div>
+<div class="span-23 last" style="margin-bottom: 1em;">Inventory was last updated <span id="inventory_last_updated"><%= time_ago_in_words(@last_modified) %></span> ago</div>
 
 <% end %>
 

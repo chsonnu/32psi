@@ -4,6 +4,7 @@ class TiresController < ApplicationController
   before_filter :authorized_user, :only => [:destroy]
 
   def create
+    params[:tire][:description] = nil if params[:tire][:description] == "optional description"
     @tire = current_user.tires.build(params[:tire])
 
     @tire_spec =  "#{@tire.width} / #{@tire.sidewall} / #{@tire.diameter} / #{@tire.condition} % / $ #{@tire.price}"
@@ -13,15 +14,15 @@ class TiresController < ApplicationController
 
     if @tire.save
       flash[:success] = "Tire record #{@tire_spec} has been added."
-      redirect_to current_user
     else
       @user = current_user
       @tires = current_user.tires
       # flash[:alert] = "The tire record for #{@tire.width} / #{@tire.sidewall} / #{@tire.diameter} at #{@tire.condition}% already exists.  Try incrementing the quantity of the existing tire record instead."
       flash[:alert] = "Something went wrong."
-      redirect_to current_user
       # render 'users/show'
     end
+
+    redirect_to root_path
   end
 
   def update
@@ -51,7 +52,7 @@ class TiresController < ApplicationController
     # User.find(params[:id]).destroy
 
     respond_to do |format|
-      format.html { redirect_to current_user }
+      format.html { redirect_to root_path }
       format.js
     end
 
@@ -62,11 +63,11 @@ class TiresController < ApplicationController
   private
 
   def authorized_user
-    logger.debug "tires_controller#authorized_user"
+    # logger.debug "tires_controller#authorized_user"
 
     @tire = Tire.find(params[:id])
 
-    logger.debug @tire.user
+    # logger.debug @tire.user
 
     redirect_to root_path unless current_user?(@tire.user)
   end

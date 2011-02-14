@@ -1,20 +1,21 @@
 <header class="span-23 round">
 <div class="span-6"><%= logo %></div>
-<div class="prepend-10 span-7 last">
-
+<div class="prepend-13 span-4 last">
+  
   <% if current_user?(@user) %>
 
   <nav>
     <ul>
-      <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-      <li><%= link_to "Sign out", signout_path, :method => :delete %></li>
-      
-   <% else %>
+      <!--li><%= link_to "Settings", edit_user_path(current_user) %></li-->
+      <li><%= link_to "Settings", settings_path %></li>
+      <li><%= link_to "Sign out", signout_path, :method => :delete %></li>	    
+
+      <% else %>
 
       <li><%= link_to "Sign in", signin_path %></li>
-
-   <% end %>
-
+      
+  <% end %>
+      
     </ul>
   </nav>
 </div>

@@ -58,7 +58,7 @@ module SessionsHelper
   end
   
   def current_user?(user)
-    logger.debug "user: #{user} VS current_user: #{current_user}"
+    # logger.debug "user: #{user.inspect} VS current_user: #{current_user.inspect}"
     
     return false if current_user.nil?
       

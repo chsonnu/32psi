@@ -107,6 +107,7 @@ a.signup_button {
 
     color: white;
     background: #C52F24;
+    border: 2px solid #621812;
     // background: lightgray;
     font-size: 150%;
     font-weight: bold;
@@ -438,9 +439,13 @@ th a:visited {
     float:right;
 }
 
-select, input, .forced_input {
+.admin select, .admin input[type=text] {
     background: #F1938C;
     border: 2px solid #621812;
+}
+
+.admin input[type=text] {
+    color: #A17471;
 }
 
 select:hover, input:hover, input:focus {
