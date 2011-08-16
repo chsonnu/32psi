@@ -3,21 +3,19 @@
 <tr>  
   <td><%= tire.width %></td>
   <td><%= tire.sidewall %></td>
-  <!-- td><%= tire.diameter %></td -->
   <td><%= tire.condition %> %</td>
   <td>
+
+    <span class="tire_quantity vertical_middle" id="tire_<%= tire.id %>"><%= sprintf("%.2d", tire.quantity) %></span>
     <% if current_user?(user) %>
-    	<%= link_to "-", tire_path(tire, :op => 'dec'), 
-	:class => 'big_sign round', :method => :put, :remote => true %>
+    	<div class="vertical_middle">
+          <%= link_to "+", tire_path(tire, :op => 'inc'), :class => 'small_sign top_round', :method => :put, :remote => true %> 
+	  <%= link_to "-", tire_path(tire, :op => 'dec'), :class => 'small_sign bottom_round', :method => :put, :remote => true %>
+	</div>
     <% end %>
 
-    <span id="tire_<%= tire.id %>"><%= sprintf("%.2d", tire.quantity) %></span>
-
-    <% if current_user?(user) %>
-    	<%= link_to "+", tire_path(tire, :op => 'inc'), 
-	:class => 'big_sign round', :method => :put, :remote => true %>
-    <% end %>
   </td>
+
   <td>$ <%= tire.price %></td>
 
   <% unless tire.created_at.nil? %>
@@ -25,7 +23,7 @@
   <% end %>
 
   <% if current_user?(user) %>
-     <td><%= link_to "X", tire, :method => :delete, :class => "big_sign round" %></td>
+     <td><%= link_to "X", tire, :method => :delete, :class => "small_sign round" %></td>
      <!--td><%= link_to "X", tire, :method => :delete, :confirm => "Are you sure?", :class => "big_sign round" %></td-->
   <% end %>
 

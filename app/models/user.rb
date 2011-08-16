@@ -2,7 +2,7 @@ require 'digest'
 
 class User < ActiveRecord::Base
   attr_accessor :password
-  attr_accessible :name, :email, :password, :password_confirmation
+  attr_accessible :name, :email, :subdomain, :address, :password, :password_confirmation
 
   has_many :tires
   has_many :microposts, :dependent => :destroy
@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
   validates :name, :presence =>	true, :length => { :maximum => 50 }
   validates :email, :presence => true, :format => { :with => email_regex }, :uniqueness => { :case_sensitive => false }
   validates :password, :presence => true, :confirmation => true, :length => { :within => 6..40 }
+  validates :subdomain, :presence => true
+  validates :address, :length => { :maximum => 20 }
 
   before_save :encrypt_password
 

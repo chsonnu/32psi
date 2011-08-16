@@ -29,17 +29,16 @@
 			</div>
 
 			<table class="pretty" summary="User tires">
-			  <!--tr class="diameter"><th colspan="6"><%= t.diameter %>"</th></tr-->
 			  <thead>
-			  <tr class="columns">
-			    <th><a href="#">Width</a></th>
-			    <th><a href="#">Sidewall</a></th>
-			    <th><a href="#">Condition</a></th>
-			    <th><a href="#">Quantity</a></th>
-			    <th><a href="#">Price</a></th>
-			    <th>Description</th>		  
-			    <% if current_user?(@user) %><th>Delete</th><% end %>
-			  </tr>
+			    <tr class="columns">
+			      <th><a href="#">Width</a></th>
+			      <th><a href="#">Sidewall</a></th>
+			      <th><a href="#">Condition</a></th>
+			      <th><a href="#">Quantity</a></th>
+			      <th><a href="#">Price</a></th>
+			      <th>Description</th>		  
+			      <% if current_user?(@user) %><th>Delete</th><% end %>
+			    </tr>
 			  </thead>
 		<% end %> 
 

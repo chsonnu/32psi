@@ -1,5 +1,13 @@
-<header class="span-23 round">
-<div class="span-6"><%= logo %></div>
+<% logger.debug request.url %>
+
+<header class="span-23 bottom_round">
+<div class="span-6">
+  <%= link_to "#{@user.name}", root_path, :class => "logo" %>
+  <br />
+  <%= @user.address %>
+  <br />
+  <%= mail_to @user.email  %>
+</div>
 <div class="prepend-13 span-4 last">
   
   <% if current_user?(@user) %>
@@ -10,7 +18,7 @@
       <li><%= link_to "Settings", settings_path %></li>
       <li><%= link_to "Sign out", signout_path, :method => :delete %></li>	    
 
-      <% else %>
+  <% else %>
 
       <li><%= link_to "Sign in", signin_path %></li>
       

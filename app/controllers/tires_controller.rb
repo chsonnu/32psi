@@ -14,15 +14,15 @@ class TiresController < ApplicationController
 
     if @tire.save
       flash[:success] = "Tire record #{@tire_spec} has been added."
+      redirect_to root_path
     else
       @user = current_user
       @tires = current_user.tires
       # flash[:alert] = "The tire record for #{@tire.width} / #{@tire.sidewall} / #{@tire.diameter} at #{@tire.condition}% already exists.  Try incrementing the quantity of the existing tire record instead."
       flash[:alert] = "Something went wrong."
-      # render 'users/show'
+      #render 'users/show'
+      redirect_to root_path
     end
-
-    redirect_to root_path
   end
 
   def update
@@ -39,7 +39,7 @@ class TiresController < ApplicationController
         format.js
       end
     else     
-      redirect_to current_user
+      redirect_to current_user      
     end
   end
   

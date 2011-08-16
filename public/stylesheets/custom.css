@@ -56,16 +56,17 @@ nav {
 
 nav ul {
     margin: 0;
-    // margin-left: auto;
-    // margin-right: auto;
     padding: 0;
-    // text-align: center;
 }
 
 nav ul li {
     list-style-type: none;
     display: inline-block;
     padding: 0.2em 0;
+}
+
+li {
+    list-style-type: none;
 }
 
 nav ul li a {
@@ -99,25 +100,47 @@ a.signup_button {
 
 /* Big sign */
 .big_sign {
-    // margin-left: auto;
-    // margin-right: auto;
-    // display: block;
-    // text-align: center;
-    // width: 100px;
-
+    display: block;
     color: white;
     background: #C52F24;
     border: 2px solid #621812;
-    // background: lightgray;
     font-size: 150%;
     font-weight: bold;
-    padding: 2px 10px;
     text-align: center;
+    width: 30px;
 }
 
 a.big_sign:hover {
     background: #621812;
     text-decoration: none;
+}
+
+.small_sign {
+    display: block;
+    color: white;
+    background: #C52F24;
+    border: 1px solid #621812;
+    font-size: 100%;
+    font-weight: bold;
+    text-align: center;
+    width: 30px;
+}
+
+a.small_sign:hover {
+    background: #621812;
+    text-decoration: none;
+}
+
+.tire_quantity {
+    //border: 2px solid #621812;
+    //display:block;
+    width:20px;
+    //text-align:center;
+}
+
+.vertical_middle {
+    display: inline-block;
+    vertical-align: middle;
 }
 
 /* Round corners */
@@ -134,9 +157,15 @@ a.big_sign:hover {
     border-radius:         0 0 10px 10px;
 }
 
+.top_round {
+    -moz-border-radius:    10px 10px 0 0;
+    -webkit-border-radius: 10px 10px 0 0;
+    border-radius:         10px 10px 0 0;
+}
+
 footer {
     text-align: center;
-    margin-top: 10px;
+    // margin-top: 10px;
     width: 710px;
     margin-left: auto;
     margin-right: auto;
@@ -319,10 +348,6 @@ form.new_micropost textarea {
     //text-transform: lowercase;
 }
 
-.float_left {
-    float:left;
-}
-
 .light_red {
     color: #F1938C;
     //color: #F3D5D3;
@@ -408,10 +433,9 @@ th a:visited {
     color: black;
 }
 
-.top_round {
-    -moz-border-radius:    10px 10px 0 0;
-    -webkit-border-radius: 10px 10px 0 0;
-    border-radius:         10px 10px 0 0;
+p.updown {
+    margin-top:2px;
+    margin-bottom:2px;
 }
 
 .tab {
@@ -448,6 +472,9 @@ th a:visited {
     color: #A17471;
 }
 
+.admin input[type=text]:focus {
+    color: black;
+}
 select:hover, input:hover, input:focus {
 //    background: #F1938C;
   //  border: 5px solid #621812;
